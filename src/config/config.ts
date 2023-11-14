@@ -4,7 +4,6 @@ import { User } from '../users';
 import {
   // BaseUser, // When the extended User is not defined
   Token,
-  // TransportConfig,
   SessionConfig,
 } from '@juliusagency/auth-ses-sql-set';
 
@@ -26,11 +25,11 @@ export const configApp: Configuration = {
     },
     resave: process.env.SESSION_RESAVE,
   },
-  // transport: {
-  //   name: 'gmail',
-  //   user: process.env.SMTP_USERNAME,
-  //   password: process.env.SMTP_PASSWORD,
-  // },
+  transport: {
+    name: 'gmail',
+    user: process.env.SMTP_USERNAME,
+    password: process.env.SMTP_PASSWORD,
+  },
   sqlDb: {
     type: 'postgres',
     url: process.env.POSTGRES_URI,
@@ -45,6 +44,10 @@ export interface Configuration {
     port: number;
   };
   session: SessionConfig;
-  // transport: TransportConfig;
+  transport: {
+    name: string;
+    user: string;
+    password: string;
+  };
   sqlDb: DataSourceOptions;
 }
