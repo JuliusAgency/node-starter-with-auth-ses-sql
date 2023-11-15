@@ -1,4 +1,4 @@
-# Node Typescript Starter with the set of Authentication packages with Sql Db
+# Node Typescript Starter with the set of Authentication packages with express-session and Sql Db
 
 <p>
   <a href="https://github.com/JuliusAgency/node-starter-with-auth-ses-sql/actions/workflows/ci-build.yaml" target="_blank">
@@ -15,7 +15,7 @@
   </a>
 </p>
 
-Tester for nodejs typescript npm packages.
+Starter nodejs typescript application.
 
 ### The project file system tree:
 
@@ -62,23 +62,55 @@ Tester for nodejs typescript npm packages.
 
 ### Prepare a project
 
-Create a folder:
+1. Create a folder:
 
 ```bash
-mkdir <new-package-name>
-cd <new-package-name>
+mkdir <new-app-name>
+cd <new-app-name>
 ```
 
-Clone the repository, remove git folder, init the new local git repo and rename the branch from master to main:
+2. Clone the repository, remove git folder, init the new local git repo with the branch "main":
 
 ```bash
-git clone https://github.com/JuliusAgency/node-starter-with-auth-ses-sql.git .
+git clone https://github.com/JuliusAgency/node-starter-<...>-auth-ses-sql.git .
 rm -r .git
-git init
-git branch -m master main
+git init -b main
 ```
 
-Install:
+3. Create remote GitHub repository with the same name;
+4. Push the local repository to the remote:
+
+```bash
+git remote add origin https://github.com/JuliusAgency/<new-app-name>.git
+git branch -M main
+git push -u origin main
+```
+
+### Prepare for installation:
+
+For installation a @juliusagency/<package-name> you need to define installation permissions for the project:
+
+1. create READ_FROM_REGISTRY token:
+
+   - go to GitHub and select your settings;
+   - scroll down to "Developers settings";
+   - open it and choose "Personal access tokens";
+   - choice "Tokens (classic)";
+   - create a token named READ_FROM_REGISTRY;
+   - temporarily store the token.
+
+2. create .npmrc file in the root directory of the project with the content:
+
+```
+  @juliusagency:registry=https://npm.pkg.github.com
+  //npm.pkg.github.com/:_authToken=<YOUR-READ_FROM_REGISTRY-TOKEN>
+  npm.pkg.github.com/:always-auth: false
+```
+
+3. Replace the placeholder by the token value;
+4. Update the .gitignore - add the .npmrc.
+
+### Installation
 
 ```bash
 npm install
@@ -92,24 +124,7 @@ npm run prepare
 
     Note: After the command is executed once, the Git hooks will run automatically before each commit and push.
 
-### Test a npm package
-
-Create new branch.
-Locally install a new package:
-
-- Copy path from the package that will be tested.
-- execute the command:
-
-```bash
-npm i <abs path to the tested package.tgz>
-
-```
-
-Put your test code into the index.ts file.  
-Put you tests under the test folder.
-Test the package.
-Uninstall the package.
-Delete the branch.
+### Development
 
 ### Usage the commands from the command line during the development:
 
