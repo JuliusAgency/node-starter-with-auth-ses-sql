@@ -1,5 +1,5 @@
 import { DataSource } from 'typeorm';
-import { configApp } from '../../../../config/config';
+import { configApp } from '../../../../config';
 
 export const dataSource = new DataSource(configApp.sqlDb);
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

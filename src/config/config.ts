@@ -1,6 +1,6 @@
-import { DataSourceOptions } from 'typeorm';
 import dotenv from 'dotenv';
-import { User } from '../users';
+import { DataSourceOptions } from 'typeorm';
+import { User } from '../app/users';
 import {
   // BaseUser, // When the extended User is not defined
   Token,
@@ -33,7 +33,7 @@ export const configApp: Configuration = {
   sqlDb: {
     type: 'postgres',
     url: process.env.POSTGRES_URI,
-    ssl: true,
+    ssl: false,
     entities: [User, Token], //List of the existing tables
     synchronize: true,
   },

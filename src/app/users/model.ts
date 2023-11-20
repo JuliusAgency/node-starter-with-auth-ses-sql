@@ -1,4 +1,4 @@
-import { BaseUser } from '@juliusagency/base-user-sql';
+import { BaseUser } from '@juliusagency/auth-ses-sql-set';
 import { Column, Entity } from 'typeorm';
 
 @Entity('users')
