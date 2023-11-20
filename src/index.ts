@@ -12,8 +12,7 @@ import { configApp } from './config';
 import { connect, sqlRepository } from './lib/db-connection';
 
 import { setupExamplesRouter, setupUserRouter } from './app';
-import { setupAuthentication, setupEmailer } from './setup';
-
+import { setupAuthentication } from './setup';
 
 const app: Express = express();
 
@@ -37,8 +36,7 @@ app.use((_req: Request, res: Response, next: NextFunction) => {
 
 connect().then(() => {
   // setup base packages
-  const emailer = setupEmailer();
-  const { authMiddleware, authRouter } = setupAuthentication(app, emailer);
+  const { authMiddleware, authRouter } = setupAuthentication(app);
 
   // Auth middleware usage
   // Define the protected routes

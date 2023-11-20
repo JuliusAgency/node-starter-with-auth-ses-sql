@@ -1,15 +1,15 @@
 import { configApp } from '../config/config';
 
 import {
-  EmailClient,
-  TransportConfig,
-} from '@juliusagency/simple-email-client';
+  EmailerConfigOptions,
+  emailerSetup,
+} from '@juliusagency/simple-emailer';
 
 export const setupEmailer = () => {
-  const transport: TransportConfig = {
-    name: configApp.transport.name,
-    user: configApp.transport.user,
-    password: configApp.transport.password,
+  const emailerConfig: EmailerConfigOptions = {
+    name: configApp.emailer.name,
+    user: configApp.emailer.user,
+    password: configApp.emailer.password,
   };
-  return new EmailClient(transport);
+  return emailerSetup(emailerConfig);
 };

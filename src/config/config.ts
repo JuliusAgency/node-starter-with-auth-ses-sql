@@ -1,11 +1,12 @@
 import dotenv from 'dotenv';
 import { DataSourceOptions } from 'typeorm';
-import { User } from '../app/users';
 import {
   // BaseUser, // When the extended User is not defined
   Token,
   SessionConfig,
 } from '@juliusagency/auth-ses-sql-set';
+
+import { User } from '../app/users';
 
 dotenv.config();
 
@@ -25,7 +26,7 @@ export const configApp: Configuration = {
     },
     resave: process.env.SESSION_RESAVE,
   },
-  transport: {
+  emailer: {
     name: 'gmail',
     user: process.env.SMTP_USERNAME,
     password: process.env.SMTP_PASSWORD,
@@ -44,7 +45,7 @@ export interface Configuration {
     port: number;
   };
   session: SessionConfig;
-  transport: {
+  emailer: {
     name: string;
     user: string;
     password: string;
