@@ -3,6 +3,11 @@ import { Router, Request, Response } from 'express';
 // export const setupExamplesRouter = ({ isAuthorized }) => {
 export const setupExamplesRouter = () => {
   const router = Router();
+
+  router.get('/', (_req: Request, res: Response) => {
+    res.json({ message: `Is live` });
+  });
+
   // Setup 2 protected routes for test
   router.get('/first', (_req: Request, res: Response) => {
     res.json({ message: `You have reached the first protected route` });

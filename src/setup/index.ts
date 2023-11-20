@@ -1,7 +1,2 @@
-/**
- * Setup package
- */
+export * from './components';
 export * from './authorization-definitions';
-export * from './authentication';
-// export * from './authorization';
-export * from './emailer';

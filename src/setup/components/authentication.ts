@@ -7,16 +7,16 @@ import {
   authSetSetup,
 } from '@juliusagency/auth-ses-sql-set';
 
-import { configApp } from '../config';
-import { sqlRepository } from '../lib/db-connection';
+import { configApp } from '../../config';
+import { sqlRepository } from '../../lib/db-connection';
 
-import { User } from '../app/users';
+import { User } from '../../app/users';
 import { setupEmailer } from './emailer';
 
 export const setupAuthentication = (app: Express) => {
   const emailer = setupEmailer();
 
-  // Setup Auth with session and MongoDb
+  // Setup Auth with session and Sql Db
   const authConfig: AuthConfig = {
     app: app,
     User: User,
