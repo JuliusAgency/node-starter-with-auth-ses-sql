@@ -62,6 +62,7 @@
   },
   "dependencies": {
     "@juliusagency/auth-ses-sql-set": "^0.0.0-development",
+    "@juliusagency/authorization-checker": "^0.0.0",
     "@juliusagency/simple-emailer": "^0.0.0-development",
     "body-parser": "^1.20.2",
     "dotenv": "^16.3.1",

@@ -27,6 +27,7 @@
     "typeorm",
     "untracked",
     "juliusagency",
+    "rbacs",
     "resave",
     "RESAVE"
   ],

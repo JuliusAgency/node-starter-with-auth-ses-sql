@@ -1,7 +1,7 @@
 import { dataSource } from '../data-source/data-source';
 
 export const connectSql = async () => {
-  dataSource
+  return dataSource
     .initialize()
     .then(() => {
       console.log('Connected to SQL Db!');
