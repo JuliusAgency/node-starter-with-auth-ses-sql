@@ -1,6 +1,6 @@
 export {
   initRules,
   ModelType,
-  Rbac,
+  rulesModel,
   setupAuthorizationSet,
 } from './authorization-setup';

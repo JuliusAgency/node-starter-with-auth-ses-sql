@@ -22,8 +22,6 @@ connect().then(() => {
   const protectedRoutes = ['/examples', '/users'];
   app.use(protectedRoutes, authMiddleware);
 
-  console.log(ModelType.RBAC);
-
   // Once only - populate the authorization definitions to DB
   // Init the rules repository
   populateRules({ sqlRepository }, ModelType.RBAC);

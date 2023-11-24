@@ -5,6 +5,6 @@
 export {
   ModelType,
   initRules,
-  Rbac,
+  rulesModel,
   rulesRepository,
 } from './repository/repository';

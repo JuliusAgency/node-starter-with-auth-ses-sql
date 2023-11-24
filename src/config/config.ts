@@ -7,11 +7,11 @@ import {
 } from '@juliusagency/auth-ses-sql-set';
 
 import { User } from '../app/users';
-import { Rbac } from '../lib/authorization-ses-sql-set';
+import { ModelType, rulesModel } from '../lib/authorization-ses-sql-set';
 
 dotenv.config();
 
-// const Rbac = rulesModel(1);
+const Rbac = rulesModel(ModelType.RBAC);
 
 export const configApp: Configuration = {
   app: {
