@@ -1,23 +1,14 @@
 export const rbacData = [
   {
     role: 'admin',
-    create: true,
-    read: true,
-    update: true,
-    delete: true,
+    permission: [true, true, true, true],
   },
   {
     role: 'user',
-    create: false,
-    read: true,
-    update: false,
-    delete: false,
+    permission: [false, true, false, false],
   },
   {
     role: 'guest',
-    create: false,
-    read: false,
-    update: false,
-    delete: false,
+    permission: [false, false, false, false],
   },
 ];

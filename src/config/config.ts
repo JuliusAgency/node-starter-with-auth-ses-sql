@@ -7,11 +7,12 @@ import {
 } from '@juliusagency/auth-ses-sql-set';
 
 import { User } from '../app/users';
-import { ModelType, rulesModel } from '../lib/authorization-ses-sql-set';
+import { ModelType, rulesModel } from '@juliusagency/authorization-ses-sql-set';
 
 dotenv.config();
 
 const Rbac = rulesModel(ModelType.RBAC);
+const Acl = rulesModel(ModelType.ACL);
 
 export const configApp: Configuration = {
   app: {
@@ -38,7 +39,7 @@ export const configApp: Configuration = {
     type: 'postgres',
     url: process.env.POSTGRES_URI,
     ssl: false,
-    entities: [User, Token, Rbac], //List of the existing tables
+    entities: [User, Token, Rbac, Acl], //List of the existing tables
     synchronize: true,
   },
 };

@@ -2,7 +2,7 @@ import {
   // initRules,
   ModelType,
   setupAuthorizationSet,
-} from '../../lib/authorization-ses-sql-set';
+} from '@juliusagency/authorization-ses-sql-set';
 
 export { ModelType };
 

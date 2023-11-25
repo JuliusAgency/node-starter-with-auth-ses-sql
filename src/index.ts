@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import express, { Express, Router } from 'express';
 
 import { configApp } from './config';
@@ -5,8 +6,9 @@ import { connect, sqlRepository } from './lib/db-connection';
 
 import { setupExamplesRouter, setupUserRouter } from './app';
 import { setupCors, setupAuthentication } from './setup';
-import { ModelType } from './lib/authorization-ses-sql-set';
-import { populateRules } from './setup/authorization-definitions/populate';
+import { ModelType } from '@juliusagency/authorization-ses-sql-set';
+import { setupAuthorization } from './setup/components/authorization';
+// import { populateRules } from './setup/authorization-definitions/populate';
 
 const app: Express = express();
 
@@ -24,19 +26,18 @@ connect().then(() => {
 
   // Once only - populate the authorization definitions to DB
   // Init the rules repository
-  populateRules({ sqlRepository }, ModelType.RBAC);
+  // populateRules({ sqlRepository }, ModelType.RBAC);
+  // populateRules({ sqlRepository }, ModelType.ACL);
 
-  // const isAuthorized = setupAuthorizationSet({sqlRepository}, ModelType.RBAC);
+  const isAuthorized = setupAuthorization({ sqlRepository }, ModelType.ACL);
 
   // Routers Setup
   const router = Router();
   // Auth router usage
   router.use('/auth', authRouter);
-  router.use('/users', setupUserRouter({ sqlRepository }));
-  router.use('/examples', setupExamplesRouter());
 
-  // router.use('/users', setupUserRouter({ sqlRepository, isAuthorized }));
-  // router.use('/examples', setupExamplesRouter({ isAuthorized }));
+  router.use('/users', setupUserRouter({ sqlRepository, isAuthorized }));
+  router.use('/examples', setupExamplesRouter({ isAuthorized }));
 
   app.use(router);
 

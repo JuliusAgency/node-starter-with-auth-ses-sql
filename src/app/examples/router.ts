@@ -1,7 +1,7 @@
 import { Router, Request, Response } from 'express';
 
 // export const setupExamplesRouter = ({ isAuthorized }) => {
-export const setupExamplesRouter = () => {
+export const setupExamplesRouter = ({ isAuthorized }) => {
   const router = Router();
 
   router.get('/', (_req: Request, res: Response) => {
@@ -18,14 +18,14 @@ export const setupExamplesRouter = () => {
   });
 
   // For test an authorization-rbac
-  // router.get('/test-rbac', isAuthorized('read'), (_req, res) => {
-  //   res.json({ message: 'You are authorized to access this resource' });
-  // });
+  router.get('/test-rbac', isAuthorized('read'), (_req, res) => {
+    res.json({ message: 'You are authorized to access this resource' });
+  });
 
-  // // For test an authorization-acl
-  // router.get('/test-acl', isAuthorized('read', 'test-acl'), (_req, res) => {
-  //   res.json({ message: 'You are authorized to access this resource' });
-  // });
+  // For test an authorization-acl
+  router.get('/test-acl', isAuthorized('read', 'test-acl'), (_req, res) => {
+    res.json({ message: 'You are authorized to access this resource' });
+  });
 
   return router;
 };

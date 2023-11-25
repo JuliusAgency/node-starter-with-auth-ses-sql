@@ -38,6 +38,7 @@
     "@types/node": "^20.8.10",
     "@types/passport": "^1.0.14",
     "@types/passport-local": "^1.0.37",
+    "@types/pg": "^8.10.9",
     "@types/validator": "^13.11.5",
     "@typescript-eslint/eslint-plugin": "^6.5.0",
     "cors": "^2.8.5",
@@ -62,7 +63,7 @@
   },
   "dependencies": {
     "@juliusagency/auth-ses-sql-set": "^0.0.0-development",
-    "@juliusagency/authorization-checker": "^0.0.0",
+    "@juliusagency/authorization-ses-sql-set": "^0.0.0-development",
     "@juliusagency/simple-emailer": "^0.0.0-development",
     "body-parser": "^1.20.2",
     "dotenv": "^16.3.1",
