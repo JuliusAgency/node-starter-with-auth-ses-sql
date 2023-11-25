@@ -1,4 +1,4 @@
-import { initRules, ModelType } from '../../lib/authorization-ses-sql-set';
+import { initRules, ModelType } from '@juliusagency/authorization-ses-sql-set';
 
 import { aclData } from './acl';
 import { rbacData } from './rbac';
