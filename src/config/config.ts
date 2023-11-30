@@ -8,6 +8,7 @@ import {
 
 import { User } from '../app/users';
 import { ModelType, rulesModel } from '@juliusagency/authorization-ses-sql-set';
+import { LoggerOptions } from '@juliusagency/simple-logger';
 
 dotenv.config();
 
@@ -35,6 +36,9 @@ export const configApp: Configuration = {
     user: process.env.SMTP_USERNAME,
     password: process.env.SMTP_PASSWORD,
   },
+  logger: {
+    loggerLevel: process.env.SIMPLE_LOGGER_LEVEL,
+  },
   sqlDb: {
     type: 'postgres',
     url: process.env.POSTGRES_URI,
@@ -54,5 +58,6 @@ export interface Configuration {
     user: string;
     password: string;
   };
+  logger: LoggerOptions;
   sqlDb: DataSourceOptions;
 }

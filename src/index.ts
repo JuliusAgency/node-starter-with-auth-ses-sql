@@ -5,7 +5,12 @@ import { configApp } from './config';
 import { connect, sqlRepository } from './lib/db-connection';
 
 import { setupExamplesRouter, setupUserRouter } from './app';
-import { setupCors, setupAuthentication } from './setup';
+import {
+  setupCors,
+  setupAuthentication,
+  setupErrorHandler,
+  setupLogger,
+} from './setup';
 import { ModelType } from '@juliusagency/authorization-ses-sql-set';
 import { setupAuthorization } from './setup/components/authorization';
 // import { populateRules } from './setup/authorization-definitions/populate';
@@ -14,6 +19,7 @@ const app: Express = express();
 
 app.use(express.json());
 setupCors(app);
+app.use(setupLogger());
 
 connect().then(() => {
   // setup base packages
@@ -40,6 +46,8 @@ connect().then(() => {
   router.use('/examples', setupExamplesRouter({ isAuthorized }));
 
   app.use(router);
+
+  setupErrorHandler(router);
 
   const port = configApp.app.port;
   app.listen(port, () => {

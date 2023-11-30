@@ -30,7 +30,6 @@
     "node": ">=16"
   },
   "devDependencies": {
-    "@types/body-parser": "^1.19.4",
     "@types/cors": "^2.8.16",
     "@types/express": "^4.17.20",
     "@types/express-session": "^1.17.10",
@@ -64,8 +63,10 @@
   "dependencies": {
     "@juliusagency/auth-ses-sql-set": "^0.0.0-development",
     "@juliusagency/authorization-ses-sql-set": "^0.0.0-development",
+    "@juliusagency/http-logger": "^0.0.0",
     "@juliusagency/simple-emailer": "^0.0.0-development",
-    "body-parser": "^1.20.2",
+    "@juliusagency/simple-error-handler": "^0.0.0",
+    "@juliusagency/simple-logger": "^0.0.1",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "pg": "^8.11.3",
