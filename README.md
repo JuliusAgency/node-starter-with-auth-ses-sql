@@ -20,28 +20,55 @@ Starter nodejs typescript application.
 ### The project file system tree:
 
 .  
-├── .cspell.json  
-├── .editorconfig  
-├── .eslintrc.json  
-├── .github  
-│   ├── ISSUE*TEMPLATE.md  
-│   └── PULL_REQUEST_TEMPLATE.md  
-├── .gitignore  
-├── .husky  
-│   ├── *  
-│   ├── pre-commit  
-│   └── pre-push  
-├── .prettierignore  
-├── .vscode  
 ├── LICENSE  
 ├── README.md  
-├── jest.config.js  
+├── jest.config.ts  
 ├── package-lock.json  
 ├── package.json  
 ├── src  
+│   ├── app - **An application features one per a folder, like users**  
+│   │   ├── examples  
+│   │   │   ├── index.ts  
+│   │   │   └── router.ts  
+│   │   ├── index.ts  
+│   │   └── users  
+│   │   ├── controller.ts  
+│   │   ├── index.ts  
+│   │   ├── model.ts  
+│   │   └── router.ts  
+│   ├── config - **The starter configuration**  
+│   │   ├── config.ts  
+│   │   └── index.ts  
 │   ├── index.ts  
+│   ├── lib - **SQL Db connection and API**  
+│   │   └── db-connection  
+│   │   ├── index.ts  
+│   │   └── sql-db  
+│   │   ├── connect  
+│   │   │   └── connect.ts  
+│   │   ├── data-source  
+│   │   │   └── data-source.ts  
+│   │   └── index.ts  
+│   ├── setup - **wrappers for packages initialization**  
+│   │   ├── authorization-definitions - **ACL and RBAC examples and authorization definition loader**  
+│   │   │   ├── acl.ts  
+│   │   │   ├── index.ts  
+│   │   │   ├── populate.ts  
+│   │   │   └── rbac.ts  
+│   │   ├── components  
+│   │   │   ├── authentication.ts  
+│   │   │   ├── authorization.ts  
+│   │   │   ├── cors.ts  
+│   │   │   ├── emailer.ts  
+│   │   │   ├── error-handler.ts  
+│   │   │   ├── headers.ts  
+│   │   │   ├── index.ts  
+│   │   │   └── logger.ts  
+│   │   └── index.ts  
 │   └── types  
 │   └── example.d.ts  
+├── test  
+│   └── index.test.ts  
 └── tsconfig.json
 
 ### The project infrastructure
