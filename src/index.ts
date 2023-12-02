@@ -19,9 +19,11 @@ const app: Express = express();
 
 app.use(express.json());
 setupCors(app);
-app.use(setupLogger());
 
 connect().then(() => {
+  const { logger, httpLogger } = setupLogger();
+  app.use(httpLogger);
+
   // setup base packages
   const { authMiddleware, authRouter } = setupAuthentication(app);
 
@@ -51,6 +53,7 @@ connect().then(() => {
 
   const port = configApp.app.port;
   app.listen(port, () => {
-    console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
+    // console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
+    logger.info(`⚡️[server]: Server is running at http://localhost:${port}`);
   });
 });

@@ -50,7 +50,7 @@ Starter nodejs typescript application.
 │   │   │   └── data-source.ts  
 │   │   └── index.ts  
 │   ├── setup - **wrappers for packages initialization**  
-│   │   ├── authorization-definitions - **ACL and RBAC examples and authorization definition loader**  
+│   │   ├── authorization-definitions - **ACL and RBAC definition examples and authorization definition loader**  
 │   │   │   ├── acl.ts  
 │   │   │   ├── index.ts  
 │   │   │   ├── populate.ts  

@@ -14,6 +14,6 @@ export const setupLogger = () => {
     token:
       ':remote-addr :method :url :status :res[content-length] - :response-time ms',
   };
-
-  return initHttpLogger(logger, formatter);
+  const httpLogger = initHttpLogger(logger, formatter);
+  return { logger, httpLogger };
 };
