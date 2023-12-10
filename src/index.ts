@@ -1,19 +1,22 @@
 import 'reflect-metadata';
 import express, { Express, Router } from 'express';
 
+import { ModelType } from '@juliusagency/authorization-ses-sql-set';
+// import { populateRules } from './setup/authorization-definitions/populate';
+
+// Setup packages and common features
 import { configApp } from './config';
 import { connect, sqlRepository } from './lib/db-connection';
-
-import { setupExamplesRouter, setupUserRouter } from './app';
 import {
   setupCors,
   setupAuthentication,
+  setupAuthorization,
   setupErrorHandler,
   setupLogger,
 } from './setup';
-import { ModelType } from '@juliusagency/authorization-ses-sql-set';
-import { setupAuthorization } from './setup/components/authorization';
-// import { populateRules } from './setup/authorization-definitions/populate';
+
+// Setup the application domains
+import { setupExamples, setupUser } from './app';
 
 const app: Express = express();
 
@@ -37,15 +40,15 @@ connect().then(() => {
   // populateRules({ sqlRepository }, ModelType.RBAC);
   // populateRules({ sqlRepository }, ModelType.ACL);
 
-  const isAuthorized = setupAuthorization({ sqlRepository }, ModelType.ACL);
+  const isAuthorized = setupAuthorization({ sqlRepository }, ModelType.RBAC);
 
   // Routers Setup
   const router = Router();
   // Auth router usage
   router.use('/auth', authRouter);
 
-  router.use('/users', setupUserRouter({ sqlRepository, isAuthorized }));
-  router.use('/examples', setupExamplesRouter({ isAuthorized }));
+  router.use('/users', setupUser({ sqlRepository, isAuthorized }));
+  router.use('/examples', setupExamples({ isAuthorized }));
 
   app.use(router);
 
@@ -53,7 +56,6 @@ connect().then(() => {
 
   const port = configApp.app.port;
   app.listen(port, () => {
-    // console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
     logger.info(`⚡️[server]: Server is running at http://localhost:${port}`);
   });
 });
