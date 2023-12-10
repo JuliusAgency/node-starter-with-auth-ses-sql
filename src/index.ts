@@ -16,7 +16,7 @@ import {
 } from './setup';
 
 // Setup the application domains
-import { setupExamples, setupUser } from './app';
+import { setupExamples, setupUsers } from './app';
 
 const app: Express = express();
 
@@ -47,7 +47,7 @@ connect().then(() => {
   // Auth router usage
   router.use('/auth', authRouter);
 
-  router.use('/users', setupUser({ sqlRepository, isAuthorized }));
+  router.use('/users', setupUsers({ sqlRepository, isAuthorized }));
   router.use('/examples', setupExamples({ isAuthorized }));
 
   app.use(router);

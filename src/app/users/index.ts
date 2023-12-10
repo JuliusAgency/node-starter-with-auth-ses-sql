@@ -6,7 +6,7 @@ import { setupUserRouter } from './router';
 
 export { User } from './model';
 
-export const setupUser = ({ sqlRepository, isAuthorized }) => {
+export const setupUsers = ({ sqlRepository, isAuthorized }) => {
   const controller = setupUserController({ sqlRepository });
   return setupUserRouter({ isAuthorized, controller });
 };
