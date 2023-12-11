@@ -1,5 +1,5 @@
 {
-  "name": "@JuliusAgency/node-starter-with-auth-ses-sql",
+  "name": "@juliusAgency/node-starter-with-auth-ses-sql",
   "version": "1.0.0",
   "description": "Starter for nodejs app",
   "main": "./build/main/index.js",
@@ -61,10 +61,10 @@
     "singleQuote": true
   },
   "dependencies": {
-    "@juliusagency/auth-ses-sql-set": "^0.0.0-development",
-    "@juliusagency/authorization-ses-sql-set": "^0.0.0-development",
+    "@juliusagency/auth-ses-sql-set": "^0.0.0",
+    "@juliusagency/authorization-ses-sql-set": "^0.0.0",
     "@juliusagency/http-logger": "^0.0.0",
-    "@juliusagency/simple-emailer": "^0.0.0-development",
+    "@juliusagency/simple-emailer": "^0.0.0",
     "@juliusagency/simple-error-handler": "^0.0.0",
     "@juliusagency/simple-logger": "^0.0.1",
     "dotenv": "^16.3.1",
