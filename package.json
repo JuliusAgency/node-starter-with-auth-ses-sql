@@ -30,7 +30,6 @@
     "node": ">=16"
   },
   "devDependencies": {
-    "@types/cors": "^2.8.16",
     "@types/express": "^4.17.20",
     "@types/express-session": "^1.17.10",
     "@types/jest": "^29.5.4",
@@ -67,6 +66,7 @@
     "@juliusagency/simple-emailer": "^0.0.0",
     "@juliusagency/simple-error-handler": "^0.0.0",
     "@juliusagency/simple-logger": "^0.0.1",
+    "@types/cors": "^2.8.17",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "pg": "^8.11.3",

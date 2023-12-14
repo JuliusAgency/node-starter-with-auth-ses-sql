@@ -1,0 +1,34 @@
+.dockerignore
+.vscode
+# .git/
+# .foo/*
+# **/*.swp
+# **/*.txt
+# !needthistextfile.txt
+# Git
+.git
+.gitignore
+.github
+# .husky
+.editconfig
+.env
+.eslint.json
+.prettierignore
+.jest.config.ts
+.cspell.json
+
+# Docker configuration
+Dockerfile
+# Makefile
+docker-compose.yml
+
+# NPM dependencies
+node_modules
+
+# Other
+test
+*.log
+logs
+tmp
+coverage
+build
