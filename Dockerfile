@@ -40,7 +40,7 @@ RUN npm config set registry https://registry.npmjs.org
 
 # For build via GitHub action
 RUN echo @juliusagency:registry=https://npm.pkg.github.com > ./.npmrc
-RUN echo //npm.pkg.github.com/:_authToken=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 >> ./.npmrc
+RUN echo //npm.pkg.github.com/:_authToken=${{ secrets.READ_FROM_REGISTRY }} >> ./.npmrc
 
 # Install app dependencies
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
