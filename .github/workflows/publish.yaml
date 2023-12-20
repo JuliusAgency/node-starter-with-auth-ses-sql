@@ -1,4 +1,4 @@
-name: PublishToGitHub
+name: Publish To GitHub
 
 on:
   workflow_dispatch:
@@ -20,6 +20,7 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.READ_FROM_REGISTRY }}
         with:
+          scope: '@juliusagency'
           context: .
           file: ./Dockerfile
           push: ${{ github.ref_type == 'tag' }}
