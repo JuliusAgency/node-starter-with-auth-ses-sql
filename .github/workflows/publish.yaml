@@ -2,7 +2,7 @@ name: Publish To GitHub
 
 on:
   workflow_dispatch:
-    branches: [main]
+    branches: [main, docker]
 jobs:
   publish-auth_ses-sql-image:
     runs-on: ubuntu-latest
