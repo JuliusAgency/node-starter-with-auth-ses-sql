@@ -1,0 +1,20 @@
+name: PublishToGitHub
+on:
+  workflow_dispatch:
+    branches: [main]
+jobs:
+publish-auth_ses-sql-image:
+runs-on: ubuntu-latest
+steps:
+- uses: actions/checkout@v4
+- name: Login to GitHub Container Registry
+uses: docker/login-action@v4
+with:
+registry: ghcr.io
+username: ${{ github.actor }}
+password: ${{ secrets.GITHUB_TOKEN }}
+- name: Build the docker Docker image
+run: |
+       docker build . --tag ghcr.io/@juliusagency/auth-ses-sql:latest
+       docker run ghcr.io/@juliusagency/auth-ses-sql:latest
+       docker push ghcr.io/@juliusagency/auth-ses-sql:latest

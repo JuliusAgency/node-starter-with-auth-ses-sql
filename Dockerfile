@@ -20,7 +20,9 @@
 
 # Option 3: Use docker-compose for the orcestration.
 
-FROM node:20-alpine3.18
+FROM node:20-bullseye-slim
+
+RUN apt-get update && apt-get install -y --no-install-recommends dumb-init
 
 # Create app directory
 RUN mkdir -p /usr/src/app/
@@ -54,4 +56,4 @@ LABEL org.opencontainers.image.authors="JuliusAgency.com"
 
 USER node
 # CMD npm start 
-CMD ["node", "build/main/index.js"]
+CMD ["dumb-init", "node", "build/main/index.js"]
