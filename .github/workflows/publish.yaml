@@ -15,12 +15,10 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-          scope: '@juliusagency'
       - name: Build and push
         uses: docker/build-push-action@v3
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.READ_FROM_REGISTRY }}
         with:
+          github_token: ${{ secrets.READ_FROM_REGISTRY }}
           context: .
           file: ./Dockerfile
           push: ${{ github.ref_type == 'tag' }}
