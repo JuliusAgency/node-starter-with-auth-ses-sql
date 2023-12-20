@@ -18,7 +18,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
-          github-token: ${{ secrets.READ_FROM_REGISTRY }}
+          # github-token: ${{ secrets.READ_FROM_REGISTRY }}
           context: .
           file: ./Dockerfile
           push: ${{ github.ref_type == 'tag' }}
