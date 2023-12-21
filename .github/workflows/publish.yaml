@@ -2,11 +2,11 @@ name: Publish To GitHub
 
 on:
   workflow_dispatch:
-    branches: [main, docker]
+    branches: [main]
     tags:
-      - "v*-auth-ses-sql"
+      - "v*-node-starter-with-auth-ses-sql"
 jobs:
-  publish-auth_ses-sql-image:
+  publish-node-starter-with-auth-ses-sql-image:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout GitHub Action
@@ -16,7 +16,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: ghcr.io/juliusagency/auth-ses-sql
+          images: ghcr.io/juliusagency/node-starter-with-auth-ses-sql 
           flavor: latest=true
           tags: |
             type=ref,event=branch
