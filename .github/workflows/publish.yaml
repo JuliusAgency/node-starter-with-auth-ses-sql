@@ -33,7 +33,7 @@ jobs:
       - name: Build and push
         run: |
           docker build --build-arg=READ_FROM_REGISTRY=${{ secrets.READ_FROM_REGISTRY }} --tag ghcr.io/juliusagency/node-starter-with-auth-ses-sql:latest .
-          docker run ghcr.io/juliusagency/node-starter-with-auth-ses-sql:latest
+          # docker run ghcr.io/juliusagency/node-starter-with-auth-ses-sql:latest
           docker push ghcr.io/juliusagency/node-starter-with-auth-ses-sql:latest
 
         # uses: docker/build-push-action@v3
