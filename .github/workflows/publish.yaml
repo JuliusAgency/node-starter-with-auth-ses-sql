@@ -12,16 +12,16 @@ jobs:
       - name: Checkout GitHub Action
         uses: actions/checkout@v4
 
-      - name: Docker meta
-        id: meta
-        uses: docker/metadata-action@v4
-        with:
-          images: ghcr.io/juliusagency/node-starter-with-auth-ses-sql 
-          flavor: latest=true
-          tags: |
-            type=ref,event=branch
-            type=ref,event=pr
-            type=semver,pattern={{version}}
+      # - name: Docker meta
+      #   id: meta
+      #   uses: docker/metadata-action@v4
+      #   with:
+      #     images: ghcr.io/juliusagency/node-starter-with-auth-ses-sql 
+      #     flavor: latest=true
+      #     tags: |
+      #       type=ref,event=branch
+      #       type=ref,event=pr
+      #       type=semver,pattern={{version}}
       
       
       - name: Login to GitHub Container Registry
@@ -31,12 +31,17 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build and push
-        uses: docker/build-push-action@v3
-        with:
-          context: .
-          file: ./Dockerfile
-          build-args: |
-            "READ_FROM_REGISTRY=${{ secrets.READ_FROM_REGISTRY }}"
-          push: ${{ github.ref_type == 'tag' }}
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+        run: |
+          docker build . --tag ghcr.io/juliusagency/node-starter-with-auth-ses-sql:latest
+          docker run ghcr.io/juliusagency/node-starter-with-auth-ses-sql:latest
+          docker push ghcr.io/juliusagency/node-starter-with-auth-ses-sql:latest
+
+        # uses: docker/build-push-action@v3
+        # with:
+        #   context: .
+        #   file: ./Dockerfile
+        #   build-args: |
+        #     "READ_FROM_REGISTRY=${{ secrets.READ_FROM_REGISTRY }}"
+        #   push: ${{ github.ref_type == 'tag' }}
+        #   tags: ${{ steps.meta.outputs.tags }}
+        #   labels: ${{ steps.meta.outputs.labels }}
