@@ -1,6 +1,6 @@
 # syntax = docker/dockerfile:1.2
 
-# sudo docker build -t auth-ses-sql .
+# sudo docker build --build-arg=READ_FROM_REGISTRY=<GITHUB_REGISTRY_TOKEN> -t auth-ses-sql .
 # sudo docker run -it --rm --name auth-ses-sql-starter auth-ses-sql
 
 # Option 1
@@ -36,12 +36,13 @@ RUN npm config set registry https://registry.npmjs.org
 
 # For @juliusagency packages installation from the project folder
 # For local build
-RUN --mount=type=secret,id=_npmrc,dst=./.npmrc
+# RUN --mount=type=secret,id=_npmrc,dst=./.npmrc
 
+ARG READ_FROM_REGISTRY
 # For build via GitHub action
-# RUN echo @juliusagency:registry=https://npm.pkg.github.com > ./.npmrc
-# RUN echo //npm.pkg.github.com/:_authToken=${{ secrets.READ_FROM_REGISTRY }} >> ./.npmrc
-
+RUN echo @juliusagency:registry=https://npm.pkg.github.com > ./.npmrc
+RUN echo //npm.pkg.github.com/:_authToken=${READ_FROM_REGISTRY} >> ./.npmrc
+RUN cat ./.npmrc
 # Install app dependencies
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
 # where available (npm@5+)
