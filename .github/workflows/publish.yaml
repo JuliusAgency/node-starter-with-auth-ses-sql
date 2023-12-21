@@ -21,6 +21,8 @@ jobs:
           # github-token: ${{ secrets.READ_FROM_REGISTRY }}
           context: .
           file: ./Dockerfile
+          build-args: |
+            "READ_FROM_REGISTRY=${{ secrets.READ_FROM_REGISTRY }}"
           push: ${{ github.ref_type == 'tag' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
