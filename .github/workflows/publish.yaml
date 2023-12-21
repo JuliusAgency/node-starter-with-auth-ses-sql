@@ -3,12 +3,27 @@ name: Publish To GitHub
 on:
   workflow_dispatch:
     branches: [main, docker]
+    tags:
+      - "v*-auth-ses-sql"
 jobs:
   publish-auth_ses-sql-image:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout GitHub Action
         uses: actions/checkout@v4
+
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: ghcr.io/juliusagency/auth-ses-sql
+          flavor: latest=true
+          tags: |
+            type=ref,event=branch
+            type=ref,event=pr
+            type=semver,pattern={{version}}
+      
+      
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v2
         with:
@@ -18,7 +33,6 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
-          # github-token: ${{ secrets.READ_FROM_REGISTRY }}
           context: .
           file: ./Dockerfile
           build-args: |
