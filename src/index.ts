@@ -52,7 +52,7 @@ connect().then(() => {
 
   app.use(router);
 
-  setupErrorHandler(router);
+  setupErrorHandler(app);
 
   const port = configApp.app.port;
   app.listen(port, () => {
