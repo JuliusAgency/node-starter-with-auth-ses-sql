@@ -31,6 +31,10 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=raw,value=latest,enable=${{ endsWith(GitHub.ref, 'main') }}
+          flavor: |
+            latest=true
 
       - name: Build and push
         # run: |
@@ -43,8 +47,8 @@ jobs:
           file: ./Dockerfile
           build-args: |
             "READ_FROM_REGISTRY=${{ secrets.READ_FROM_REGISTRY }}"
-          # push: ${{ github.ref_type == 'tag' }}
-          push: true
+          push: ${{ github.ref_type == 'tag' }}
+          # push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           outputs: type=image,name=target
