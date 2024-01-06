@@ -59,6 +59,10 @@ ENV PORT 3005
 EXPOSE 3005
 
 LABEL org.opencontainers.image.authors="JuliusAgency.com" 
+LABEL org.opencontainers.image.source=https://github.com/juliusagency/node-starter-with-auth-ses-sql
+LABEL org.opencontainers.image.description="Container image - Node Typescript Starter"
+LABEL org.opencontainers.image.licenses=MIT
+
 
 USER node
 # CMD npm start 
