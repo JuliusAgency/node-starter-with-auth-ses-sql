@@ -38,8 +38,8 @@ jobs:
 
       - name: Build and push
         # run: |
-        #   docker build . --build-arg=READ_FROM_REGISTRY=${{ secrets.READ_FROM_REGISTRY }} --tag ghcr.io/juliusagency/node-starter-with-auth-ses-sql:latest
-        #   docker push ghcr.io/juliusagency/node-starter-with-auth-ses-sql:latest
+        #   docker build . --build-arg=READ_FROM_REGISTRY=${{ secrets.READ_FROM_REGISTRY }} --tag ghcr.io/${{ github.repository }}:${{github.run_id}}
+        #   docker push ghcr.io/${{ github.repository }}:${{github.run_id}}
 
         uses: docker/build-push-action@v3
         with:
