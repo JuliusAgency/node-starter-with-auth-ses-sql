@@ -5,7 +5,7 @@ on:
     branches: [main]
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.event.repository.name }}
+  IMAGE_NAME: ${{ github.repository }}
 
 jobs:
   build-and-push-image:
@@ -26,33 +26,29 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      # - name: Extract metadata (tags, labels) for Docker
-      #   id: meta
-      #   uses: docker/metadata-action@v4
-      #   with:
-      #     images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-      #     tags: |
-      #       type=raw,value=latest,enable=${{ endsWith(GitHub.ref, 'main') }}
-      #     flavor: |
-      #       latest=true
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=raw,value=latest,enable=${{ endsWith(GitHub.ref, 'main') }}
+          flavor: |
+            latest=true
 
       - name: Build and push
-        run: |
-          docker build . --build-arg=READ_FROM_REGISTRY=${{ secrets.READ_FROM_REGISTRY }} --tag ${{env.REGISTRY}}/juliusagency/${{ env.IMAGE_NAME }}:${{github.run_number}}
-          docker push ${{env.REGISTRY}}/juliusagency/${{ env.IMAGE_NAME }}:${{github.run_number}}
-          
-          # docker build . --build-arg=READ_FROM_REGISTRY=${{ secrets.READ_FROM_REGISTRY }} --tag ghcr.io/${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{github.run_id}}
-          # docker push ghcr.io/${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{github.run_id}}
-          # ghcr.io/ghcr.io/JuliusAgency/node-starter-with-auth-ses-sql
+        # run: |
+        #   docker build . --build-arg=READ_FROM_REGISTRY=${{ secrets.READ_FROM_REGISTRY }} --tag ghcr.io/${{ github.repository }}:${{github.run_id}}
+        #   docker push ghcr.io/${{ github.repository }}:${{github.run_id}}
 
-        # uses: docker/build-push-action@v3
-        # with:
-        #   context: .
-        #   file: ./Dockerfile
-        #   build-args: |
-        #     "READ_FROM_REGISTRY=${{ secrets.READ_FROM_REGISTRY }}"
-        #   push: ${{ github.ref_type == 'tag' }}
-        #   # push: true
-        #   tags: ${{ steps.meta.outputs.tags }}
-        #   labels: ${{ steps.meta.outputs.labels }}
-        #   outputs: type=image,name=target
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          file: ./Dockerfile
+          build-args: |
+            "READ_FROM_REGISTRY=${{ secrets.READ_FROM_REGISTRY }}"
+          push: ${{ github.ref_type == 'tag' }}
+          # push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          outputs: type=image,name=target
