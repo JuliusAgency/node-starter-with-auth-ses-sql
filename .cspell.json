@@ -5,6 +5,7 @@
   "words": [
     "bitauth",
     "bitjson",
+    "buildx",
     "cimg",
     "circleci",
     "codecov",
@@ -16,20 +17,20 @@
     "execa",
     "exponentiate",
     "globby",
+    "juliusagency",
     "libauth",
     "mkdir",
     "mngr",
     "parens",
     "prettierignore",
+    "rbacs",
+    "resave",
+    "RESAVE",
     "sandboxed",
     "transpiled",
     "typedoc",
     "typeorm",
-    "untracked",
-    "juliusagency",
-    "rbacs",
-    "resave",
-    "RESAVE"
+    "untracked"
   ],
   "flagWords": [],
   "ignorePaths": [
