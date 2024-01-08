@@ -38,8 +38,8 @@ jobs:
 
       - name: Build and push
         run: |
-          docker build . --build-arg=READ_FROM_REGISTRY=${{ secrets.READ_FROM_REGISTRY }} --tag ghcr.io/${{ github.repository }}:${{github.run_id}}
-          docker push ghcr.io/${{ github.repository }}:${{github.run_id}}
+          docker build . --build-arg=READ_FROM_REGISTRY=${{ secrets.READ_FROM_REGISTRY }} --tag ghcr.io/${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{github.run_id}}
+          docker push ghcr.io/${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{github.run_id}}
 
         # uses: docker/build-push-action@v3
         # with:
