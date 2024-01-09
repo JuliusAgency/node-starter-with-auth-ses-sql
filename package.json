@@ -1,6 +1,6 @@
 {
   "name": "@juliusAgency/node-starter-with-auth-ses-sql",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Starter for nodejs app",
   "main": "./build/main/index.js",
   "repository": "https://github.com/JuliusAgency/node-starter-with-auth-ses-sql",
@@ -60,7 +60,7 @@
     "singleQuote": true
   },
   "dependencies": {
-    "@juliusagency/auth-ses-sql-set": "^0.0.3",
+    "@juliusagency/auth-ses-sql-set": "^0.0.4",
     "@juliusagency/authorization-ses-sql-set": "^0.0.0",
     "@juliusagency/http-logger": "^0.0.0",
     "@juliusagency/simple-emailer": "^0.0.0",
