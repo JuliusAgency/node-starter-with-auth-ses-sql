@@ -16,6 +16,7 @@ const Rbac = rulesModel(ModelType.RBAC);
 const Acl = rulesModel(ModelType.ACL);
 
 export const configApp: Configuration = {
+  test: process.env.TEST === 'true' ? true : false,
   app: {
     port: Number(process.env.PORT) || 3000,
   },
@@ -46,9 +47,14 @@ export const configApp: Configuration = {
     entities: [User, Token, Rbac, Acl], //List of the existing tables
     synchronize: true,
   },
+  authorization_type:
+    process.env.AUTHORIZATION_MODEL_TYPE === 'RBAC'
+      ? ModelType.RBAC
+      : ModelType.ACL,
 };
 
 export interface Configuration {
+  test: boolean;
   app: {
     port: number;
   };
@@ -60,4 +66,5 @@ export interface Configuration {
   };
   logger: LoggerOptions;
   sqlDb: DataSourceOptions;
+  authorization_type: ModelType;
 }

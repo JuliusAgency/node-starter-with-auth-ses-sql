@@ -1,8 +1,7 @@
 import 'reflect-metadata';
 import express, { Express, Router } from 'express';
 
-import { ModelType } from '@juliusagency/authorization-ses-sql-set';
-// import { populateRules } from './setup/authorization-definitions/populate';
+import { populateRules } from './setup/authorization-definitions/populate';
 
 // Setup packages and common features
 import { configApp } from './config';
@@ -37,10 +36,12 @@ connect().then(() => {
 
   // Once only - populate the authorization definitions to DB
   // Init the rules repository
-  // populateRules({ sqlRepository }, ModelType.RBAC);
-  // populateRules({ sqlRepository }, ModelType.ACL);
+  const modelType = configApp.authorization_type;
+  if (configApp.test) {
+    populateRules({ sqlRepository }, modelType);
+  }
 
-  const isAuthorized = setupAuthorization({ sqlRepository }, ModelType.RBAC);
+  const isAuthorized = setupAuthorization({ sqlRepository }, modelType);
 
   // Routers Setup
   const router = Router();
