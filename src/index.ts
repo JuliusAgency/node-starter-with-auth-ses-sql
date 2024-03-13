@@ -1,8 +1,6 @@
 import 'reflect-metadata';
 import express, { Express, Router } from 'express';
 
-import { populateRules } from './setup/authorization-definitions/populate';
-
 // Setup packages and common features
 import { configApp } from './config';
 import { connect, sqlRepository } from './lib/db-connection';
@@ -34,14 +32,7 @@ connect().then(() => {
   const protectedRoutes = ['/examples', '/users'];
   app.use(protectedRoutes, authMiddleware);
 
-  // Once only - populate the authorization definitions to DB
-  // Init the rules repository
-  const modelType = configApp.authorization_type;
-  if (configApp.test) {
-    populateRules({ sqlRepository }, modelType);
-  }
-
-  const isAuthorized = setupAuthorization({ sqlRepository }, modelType);
+  const isAuthorized = setupAuthorization({ sqlRepository });
 
   // Routers Setup
   const router = Router();
