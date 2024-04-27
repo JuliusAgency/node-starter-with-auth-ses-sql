@@ -1,0 +1,10 @@
+{
+  "name": "@juliusagency/mongo",
+  "version": "1.0.0",
+  "description": "",
+  "devDependencies": {
+  },
+  "dependencies": {
+    "mongoose": "^8.0.0"
+  }
+}
