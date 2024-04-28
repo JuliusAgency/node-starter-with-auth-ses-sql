@@ -56,6 +56,8 @@ COPY . .
 RUN npm run build
 
 ENV PORT 3005
+ENV NODE_ENV prod
+
 EXPOSE 3005
 
 LABEL org.opencontainers.image.authors="JuliusAgency.com" 
